@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>全球独享静态原生住宅 IP 专线服务</title>
+    <style>
+        :root {
+            --primary: #0f172a;
+            --primary-light: #2563eb;
+            --primary-gradient: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            --accent: #dc2626;
+            --accent-bg: #fef2f2;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #334155;
+            --text-title: #0f172a;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Microsoft YaHei", sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 0;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: var(--primary-gradient);
+            color: #ffffff;
+            padding: 70px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-container {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        .tag-line {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+        .hero-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            line-height: 1.25;
+            margin-bottom: 20px;
+            letter-spacing: -0.5px;
+        }
+        .hero-subtitle {
+            font-size: 1.15rem;
+            color: #94a3b8;
+            margin-bottom: 35px;
+        }
+        .hero-badges {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        .badge {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Main Content Container */
+        .main-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        /* Section Title Styling */
+        .section-header {
+            margin-bottom: 25px;
+            border-left: 5px solid var(--primary-light);
+            padding-left: 15px;
+        }
+        .section-title {
+            font-size: 1.75rem;
+            color: var(--text-title);
+            font-weight: 700;
+        }
+        .section-desc {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        /* Grid Layout for Video Line Tables */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+            align-items: start;
+        }
+
+        @media (max-width: 768px) {
+            .video-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero-title {
+                font-size: 2rem;
+            }
+        }
+
+        /* Premium Card / Table Styling */
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border);
+            overflow: hidden;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+        .card-header {
+            background-color: #f8fafc;
+            padding: 15px 20px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-title);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Custom Tables */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 0.95rem;
+        }
+        .data-table th {
+            background-color: #fafafa;
+            color: var(--text-muted);
+            font-weight: 600;
+            padding: 12px 20px;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid var(--border);
+        }
+        .data-table td {
+            padding: 12px 20px;
+            border-bottom: 1px solid #f1f5f9;
+            color: var(--text-main);
+        }
+        .data-table tr:last-child td {
+            border-bottom: none;
+        }
+        .data-table tr:hover td {
+            background-color: #f8fafc;
+        }
+        .price-text {
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-align: right;
+        }
+        .price-unit {
+            font-size: 0.8rem;
+            font-weight: 400;
+            color: var(--text-muted);
+            margin-left: 2px;
+        }
+        .text-right {
+            text-align: right;
+        }
+
+        /* Live Stream Section Layout */
+        .live-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+        @media (max-width: 500px) {
+            .live-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        .live-card {
+            background: #ffffff;
+            border: 2px solid var(--border);
+            border-radius: 16px;
+            padding: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .live-card.premium {
+            border-color: #3b82f6;
+        }
+        .live-card.premium::after {
+            content: '推荐';
+            position: absolute;
+            top: 15px;
+            right: -30px;
+            background: #3b82f6;
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 4px 30px;
+            transform: rotate(45deg);
+        }
+        .live-info h3 {
+            font-size: 1.3rem;
+            color: var(--text-title);
+            margin-bottom: 8px;
+        }
+        .live-info p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+        .live-price {
+            text-align: right;
+        }
+        .live-price-amount {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--accent);
+            line-height: 1;
+        }
+
+        /* Notice / Terms Section */
+        .notice-box {
+            background-color: #fffbeb;
+            border: 1px solid #fef3c7;
+            border-left: 4px solid #d97706;
+            border-radius: 12px;
+            padding: 25px;
+            margin-top: 50px;
+        }
+        .notice-box h3 {
+            color: #92400e;
+            font-size: 1.15rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .notice-list {
+            list-style-type: none;
+        }
+        .notice-list li {
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+            color: #78350f;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+        .notice-list li::before {
+            content: "•";
+            color: #d97706;
+            font-weight: bold;
+            font-size: 1.2rem;
+            line-height: 1;
+        }
+        .notice-list li:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary);
+            color: #94a3b8;
+            padding: 30px 20px;
+            text-align: center;
+            font-size: 0.9rem;
+            margin-top: 60px;
+            border-top: 1px solid #1e293b;
+        }
+        footer p {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Utility classes */
+        .icon {
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            background-color: var(--primary-light);
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-container">
+            <span class="tag-line">小火箭 / V2双端 / 软路由通用</span>
+            <h1 class="hero-title">高品质独享静态原生家庭住宅 IP</h1>
+            <p class="hero-subtitle">专为短视频矩阵运营、跨境电商直播推流及账号养护量身定制的高纯净度网络解决方案。</p>
+            <div class="hero-badges">
+                <div class="badge">🌐 纯净原生家庭 IP</div>
+                <div class="badge">⚡ 绝不混用 独享带宽</div>
+                <div class="badge">🛡️ 所有线路均为优选 IP</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Container -->
+    <main class="main-container">
+
+        <!-- Section: 短视频专线 -->
+        <section id="video-service">
+            <div class="section-header">
+                <h2 class="section-title">📱 短视频专线价格表</h2>
+                <p class="section-desc">按月收费 • 适合各大短视频平台内容发布、矩阵运营与养号</p>
+            </div>
+
+            <div class="video-grid">
+                <!-- 亚洲 (Prices Doubled) -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title"><span class="icon"></span> 亚洲节点</div>
+                    </div>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>地区</th>
+                                <th class="text-right">价格</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>香港</strong></td>
+                                <td class="price-text">80<span class="price-unit">元/月</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>台湾</strong></td>
+                                <td class="price-text">90<span class="price-unit">元/月</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>日本</strong></td>
+                                <td class="price-text">80<span class="price-unit">元/月</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>韩国</strong></td>
+                                <td class="price-text">100<span class="price-unit">元/月</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>新加坡</strong></td>
+                                <td class="price-text">110<span class="price-unit">元/月</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>马来西亚</strong></td>
+                                <td class="price-text">100<span class="price-unit">元/月</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>印尼</strong></td>
+                                <td class="price-text">80<span class="price-unit">元/月</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>菲律宾</strong></td>
+                                <td class="price-text">100<span class="price-unit">元/月</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>越南</strong></td>
+                                <td class="price-text">110<span class="price-unit">元/月</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>泰国</strong></td>
+                                <td class="price-text">100<span class="price-unit">元/月</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>迪拜</strong></td>
+                                <td class="price-text">80<span class="price-unit">元/月</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- 北美洲 (Prices Doubled) -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title"><span class="icon"></span> 北美洲节点</div>
+                    </div>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>地区</th>
+                                <th class="text-right">价格</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>美国</strong></td>
+                                <td class="price-text">60<span class="price-unit">元/月</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>美国双NTT</strong></td>
+                                <td class="price-text">70<span class="price-unit">元/月</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>加拿大</strong></td>
+                                <td class="price-text">80<span class="price-unit">元/月</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>墨西哥</strong></td>
+                                <td class="price-text">130<span class="price-unit">元/月</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- 欧洲及其他 (Prices Doubled) -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title"><span class="icon"></span> 欧洲、大洋洲及其他</div>
+                    </div>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>地区</th>
+                                <th class="text-right">价格</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>欧洲 (英/法/德/意/西)</strong></td>
+                                <td class="price-text">70<span class="price-unit">元/月</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>欧洲 (荷兰)</strong></td>
+                                <td class="price-text">80<span class="price-unit">元/月</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>非洲 (南非)</strong></td>
+                                <td class="price-text">80<span class="price-unit">元/月</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>南美洲 (巴西) / 大洋洲 (澳洲)</strong></td>
+                                <td class="price-text">90<span class="price-unit">元/月</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- 广播家宽特惠 (Prices Doubled) -->
+            <div class="card" style="margin-top: -25px; margin-bottom: 50px;">
+                <div class="card-header" style="background-color: #f0fdf4; border-bottom: 1px solid #bbf7d0;">
+                    <div class="card-title" style="color: #166534;">🏠 广播家宽特惠专区</div>
+                </div>
+                <table class="data-table">
+                    <tbody>
+                        <tr>
+                            <td style="padding: 18px 20px;"><strong>所有地区通用广播级家庭宽带 IP</strong></td>
+                            <td style="padding: 18px 20px; text-align: right;" class="price-text">60<span class="price-unit">元/月</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Section: 直播专线 -->
+        <section id="live-service">
+            <div class="section-header">
+                <h2 class="section-title">🎥 跨境直播专线</h2>
+                <p class="section-desc">独享大带宽 • 低延迟稳定不掉线 • 专为大流量跨境推流设计</p>
+            </div>
+
+            <div class="live-grid">
+                <!-- Prices Increased by 60 -->
+                <div class="live-card">
+                    <div class="live-info">
+                        <h3>欧美地区专线</h3>
+                        <p>独享静态原生家庭住宅 IP</p>
+                    </div>
+                    <div class="live-price">
+                        <div class="live-price-amount">210<span style="font-size: 1rem; font-weight: 400; color: var(--text-muted);"> 元/月</span></div>
+                    </div>
+                </div>
+
+                <div class="live-card premium">
+                    <div class="live-info">
+                        <h3>亚洲地区专线</h3>
+                        <p>独享静态原生家庭住宅 IP</p>
+                    </div>
+                    <div class="live-price">
+                        <div class="live-price-amount">260<span style="font-size: 1rem; font-weight: 400; color: var(--text-muted);"> 元/月</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: 购买须知 -->
+        <section id="terms">
+            <div class="notice-box">
+                <h3>⚠️ 购买须知与服务条款</h3>
+                <ul class="notice-list">
+                    <li><strong>优质网络保证：</strong> 所有专线所使用的 IP 均通过严格筛选与技术优化，确保为最优质的优选 IP。</li>
+                    <li><strong>续费时效提醒：</strong> 本服务采用按月计费模式。为避免业务中断，请务必提前安排续费。<strong>服务到期 24 小时后，系统将自动回收 IP 且无法再次找回或续费。</strong></li>
+                    <li><strong>退换政策说明：</strong> 由于住宅 IP 及专线跨境带宽具备高额的前置采购与固定维护成本，<strong>一经开通交付，概不接受任何理由的退款或更换线路请求</strong>。请在购买前仔细确认好您的业务所需区域。</li>
+                    <li><strong>售后支持范围：</strong> 承接使用期间的全程售后技术支持。<strong>请注意：售后仅限专线网络本身失效、无法连接或不可使用的技术故障排查</strong>，不包含客户端软件的基本设置、养号技巧或平台运营等非网络层面的教学。</li>
+                </ul>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 全球静态原生住宅住宅 IP 专线服务. 保留所有权利。</p>
+        <p style="font-size: 0.8rem; margin-top: 10px; color: #64748b;">高纯净度、稳定骨干网，助力您的跨境业务扬帆远航。</p>
+    </footer>
+
+</body>
+</html>
